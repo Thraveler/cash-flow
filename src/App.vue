@@ -1,15 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <Suspense>
+    <template #default>
+      <home />
+    </template>
+    <template #fallback>
+      <splash-screen />
+    </template>
+  </Suspense>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// import Home from "@/components/Home.vue";
+import SplashScreen from "@/components/SplashScreen.vue";
+import { defineAsyncComponent } from "vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Home: defineAsyncComponent(
+      () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(import("./components/Home.vue"));
+          }, 2000);
+        })
+    ),
+    SplashScreen,
   },
 };
 </script>
