@@ -2,7 +2,27 @@
   <div class="header">
     <slot name="header"></slot>
   </div>
+  <div class="resume">
+    <slot name="resume"></slot>
+  </div>
+  <div class="movements">
+    <div
+      @click="isMovementsVisible = !isMovementsVisible"
+      class="header-movements"
+    >
+      <div class="grip"></div>
+    </div>
+    <div class="body-movements" v-show="isMovementsVisible">
+      <slot name="movements"></slot>
+    </div>
+  </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+let isMovementsVisible = ref(false);
+</script>
 
 <style scoped>
 .header,
@@ -31,7 +51,7 @@
   box-shadow: 0 -8px 16px #e5e5e5;
   border-radius: 24px;
 }
-.movements .head {
+.movements .header-movements {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,11 +59,11 @@
   width: 100%;
   box-sizing: border-box;
 }
-.movements .body {
+.movements .body-movements {
   height: 75vh;
   width: 100%;
 }
-.movements .head .grip {
+.movements .header-movements .grip {
   width: 120px;
   height: 8px;
   background-color: #e5e5e5;
