@@ -4,7 +4,7 @@
       <v-header />
     </template>
     <template #resume>
-      <resume />
+      <resume :label="label" :totalAmount="10000" :amount="amount" />
     </template>
     <template #movements>
       <movements />
@@ -24,6 +24,12 @@ export default {
     VHeader,
     Resume,
     Movements,
+  },
+  data() {
+    return {
+      label: null,
+      amount: null,
+    };
   },
 };
 </script>
