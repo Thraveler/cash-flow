@@ -4,7 +4,10 @@
       <v-header />
     </template>
     <template #resume>
-      <resume :label="label" :totalAmount="10000" :amount="amount" />
+      <resume :label="label" :totalAmount="10000" :amount="amount">
+        <template #graphic>Graphic</template>
+        <template #action>Action</template>
+      </resume>
     </template>
     <template #movements>
       <movements />

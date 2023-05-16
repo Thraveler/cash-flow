@@ -1,11 +1,22 @@
 <template>
-  <div>
+  <main>
     <p>{{ labelToShow }}</p>
     <h1>{{ amountToShow }}</h1>
-  </div>
+    <div class="graphic">
+      <slot name="graphic"></slot>
+    </div>
+    <div class="action">
+      <slot name="action"></slot>
+    </div>
+  </main>
 </template>
 
 <script>
+const currencyFormater = new Intl.NumberFormat("es-MX", {
+  style: "currency",
+  currency: "MXN",
+});
+
 export default {
   props: {
     label: {
@@ -22,7 +33,9 @@ export default {
   },
   computed: {
     amountToShow() {
-      return this.amount !== null ? this.amount : this.totalAmount;
+      return this.amount !== null
+        ? currencyFormater.format(this.amount)
+        : currencyFormater.format(this.totalAmount);
     },
     labelToShow() {
       return this.label !== null ? this.label : "Total saving";
