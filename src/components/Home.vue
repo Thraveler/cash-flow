@@ -6,7 +6,9 @@
     <template #resume>
       <resume :label="label" :totalAmount="10000" :amount="amount">
         <template #graphic>Graphic</template>
-        <template #action>Action</template>
+        <template #action>
+          <action />
+        </template>
       </resume>
     </template>
     <template #movements>
@@ -20,6 +22,7 @@ import Layout from "@/components/Layout.vue";
 import VHeader from "@/components/VHeader.vue";
 import Resume from "@/components/resume/Index.vue";
 import Movements from "@/components/movements/Index.vue";
+import Action from "@/components/Action.vue";
 
 export default {
   components: {
@@ -27,6 +30,7 @@ export default {
     VHeader,
     Resume,
     Movements,
+    Action,
   },
   data() {
     return {
