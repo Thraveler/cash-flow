@@ -1,7 +1,48 @@
 <template>
   <button @click="isModalOpen = true">Add new movement</button>
   <Teleport to="#app">
-    <modal v-show="isModalOpen" @close="isModalOpen = false"> form </modal>
+    <modal v-show="isModalOpen" @close="isModalOpen = false">
+      <form @submit.prevent="submit">
+        <div class="field">
+          <label for="title">Title</label>
+          <input type="text" name="title" v-model="title" />
+        </div>
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input type="number" name="amount" v-model="amount" />
+        </div>
+        <div class="field">
+          <label for="description">Description</label>
+          <input type="text" name="description" v-model="description" />
+        </div>
+        <div class="field">
+          <label class="radio-label" for="income">
+            <input
+              type="radio"
+              name="movementType"
+              value="income"
+              id="income"
+              v-model="movementType"
+            />
+            Income
+          </label>
+
+          <label class="radio-label" for="spent"
+            ><input
+              type="radio"
+              name="movementType"
+              value="spent"
+              id="spent"
+              v-model="movementType"
+            />
+            Spent
+          </label>
+        </div>
+        <div>
+          <button>Add movement</button>
+        </div>
+      </form>
+    </modal>
   </Teleport>
 </template>
 
@@ -10,6 +51,15 @@ import Modal from "@/components/Modal.vue";
 import { ref } from "vue";
 
 let isModalOpen = ref(false);
+let title = ref("");
+let amount = ref(0);
+let description = ref("");
+let movementType = ref("income");
+
+const submit = () => {
+  console.log("click");
+  isModalOpen.value = false;
+};
 </script>
 
 <style scoped>
