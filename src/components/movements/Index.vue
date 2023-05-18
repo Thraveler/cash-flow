@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Movements</h1>
-    <div v-for="movement in movements" :key="movement.id">
-      <movement :movement="movement" />
+    <h1 class="title">History</h1>
+    <div class="movements" v-for="movement in movements" :key="movement.id">
+      <movement :movement="movement" @remove="remove" />
     </div>
   </div>
 </template>
@@ -19,6 +19,10 @@ const props = defineProps({
 });
 
 const { movements } = toRefs(props);
+
+const remove = (movementId) => {
+  console.log(movementId);
+};
 </script>
 
 <style scoped>

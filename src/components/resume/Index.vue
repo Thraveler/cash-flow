@@ -12,10 +12,7 @@
 </template>
 
 <script>
-const currencyFormater = new Intl.NumberFormat("es-MX", {
-  style: "currency",
-  currency: "MXN",
-});
+import currencyFormater from "@/utils/currencyFormater";
 
 export default {
   props: {
